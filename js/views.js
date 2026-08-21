@@ -8,7 +8,7 @@
   // ---- Настройки под твой проект Appwrite ----
   const APPWRITE_ENDPOINT = "https://fra.cloud.appwrite.io/v1";
   const APPWRITE_PROJECT_ID = "6a88a994001db87195f7";
-  const APPWRITE_FUNCTION_ID = "6a88c72f00361339994b";  // ID функции lyzos
+  const APPWRITE_FUNCTION_ID = "6a88c72f00080c549601";  // ID функции lyzos
 
   let sdkLoadPromise = null;
 
