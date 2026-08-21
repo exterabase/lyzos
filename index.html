@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en"><head>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>lyzos.tech</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css"> 
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="images/default.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="js/vanilla-tilt.min.js"></script>
+  <link rel="stylesheet" href="css/tilt-effect.css">
+</head>
+
+  <body><div id="terminal">
+    <div id="terminal-header">
+      <div id="terminal-buttons">
+
+        <div class="terminal-button" id="close-button"></div>
+        <div class="terminal-button" id="minimize-button"></div>
+        <div class="terminal-button" id="maximize-button"></div>
+      </div>
+    </div>
+    <div id="terminal-content">
+      <p id="terminal-text"></p>
+    </div>
+  </div>
+
+  <div id="video-background">
+    <video autoplay="" muted="" loop="" playsinline="" webkit-playsinline="" tabindex="-1" id="myVideo">
+      <!-- ЗАМЕНИ на своё видео-фон, положи файл в media/ и поправь src -->
+      <source src="media/oshi%20no%20ko.mp4" type="video/mp4">
+    </video>
+  </div>
+
+    <div id="audio-background">
+      <div id="music-controls">
+      </div>
+    </div>
+
+    
+    <div id="video-overlay"></div>
+    <div id="blurred-box" class="tilt-element">
+      <!-- ЗАМЕНИ на свою аватарку, положи файл в images/ и поправь src -->
+      <img id="profile-picture" src="images/kaka3.png" alt="Profile Picture">
+      <img id="avatar-frame" src="" alt="Avatar Frame">
+      <p id="username-container" style="color: white; font-weight: bold; font-size: 32px;">
+        <span id="username">Lelouch vi Britannia</span>
+        <span id="typing-cursor">|</span>
+      </p>
+      <div class="badges-container">
+        <img src="images/developer.png" alt="dev badge" title="Developer">
+        <img src="images/verified.png" alt="verified badge" title="Verified">
+        <img src="images/music.png" alt="music badge" title="Music">
+      </div>
+      <div class="lang-container">
+        <i class="fa-brands fa-android" title="Kotlin / Android"></i>
+        <i class="fa-brands fa-python" title="Python (Chaquopy)"></i>
+        <i class="fa-solid fa-mobile-screen-button" title="Flutter / Dart"></i>
+        <i class="fa-brands fa-js" title="JavaScript"></i>
+        <i class="fa-brands fa-html5" title="HTML"></i>
+        <i class="fa-brands fa-css3-alt" title="CSS"></i>
+        <img src="images/icons/ayugram.svg" class="lang-svg" title="AyuGram plugins" alt="AyuGram">
+        <img src="images/icons/exteragram.svg" class="lang-svg" title="ExteraGram plugins" alt="ExteraGram">
+      </div>
+
+      <div class="user-description">
+        <p id="user-description" style="color: white;">
+          WHY<br>2009<br>rei_plugins &middot; lyzos.tech<br>
+          <span data-views-count style="font-size: 12px; opacity: 0.75;">—</span> просмотров
+        </p>
+      </div>
+
+      <div class="discord-widget">
+        <div class="discord-content">
+          <div class="discord-icon">
+            <img id="discord-avatar" src="" alt="" draggable="false" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="discord-meta">
+            <b id="discord-username"></b>
+            <div>
+              <span id="discord-status-dot"></span>
+              <span id="discord-status-text"></span>
+            </div>
+          </div>
+        </div>
+        <div class="discord-activity">
+          <div id="discord-activity-info">
+            <div id="discord-album-art"></div>
+            <div class="discord-activity-content">
+              <div id="discord-activity-name"></div>
+              <div id="discord-activity-details"></div>
+              <div id="discord-activity-state"></div>
+            </div>
+          </div>
+          <div id="discord-no-activity">Discord ID: 975710504720945153<br>Сейчас ничем не занят</div>
+        </div>
+      </div>
+
+      <div class="links">
+        <a href="https://t.me/rei_plugins" target="_blank" title="Канал (AyuGram)">
+          <img src="images/icons/ayugram.svg" class="link-svg" alt="AyuGram">
+        </a>
+        <a href="https://t.me/rei_chat777" target="_blank" title="Telegram-чат">
+          <i class="fa-solid fa-comments"></i>
+        </a>
+        <a href="https://tiktok.com/@lyzos.tech" target="_blank" title="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://exteragram.app" target="_blank" title="ExteraGram">
+          <img src="images/icons/exteragram.svg" class="link-svg" alt="ExteraGram">
+        </a>
+        <a href="#" id="discord-copy-link" title="Скопировать Discord">
+          <i class="fa-brands fa-discord"></i>
+        </a>
+      </div>
+    </div>
+  
+  
+  <script src="js/views.js"></script>
+  <script src="js/lanyard.js"></script>
+  <script src="js/discord.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/title.js"></script>
+  <script src="js/username-animation.js"></script>
+  <script src="js/tilt-effect.js"></script>
+  <script src="js/audio-visualizer.js"></script>
+  <!-- neko.js/neko-init.js отключены: в исходном шаблоне не было спрайта
+       assets/cursor/neko.png, поэтому фича 404-ила в консоль. Если добавишь
+       свой спрайт кота (32x32 фреймы, см. neko.js), верни эти два тега. -->
+  <!-- <script src="js/neko.js"></script>
+  <script src="js/neko-init.js"></script> -->
+  <script src="js/music.js"></script>
+  <script>
+    // Discord нет инвайта на сервер — просто копируем ник по клику
+    document.getElementById('discord-copy-link').addEventListener('click', function (e) {
+      e.preventDefault();
+      const tag = window.lyzosDiscordTag || 'lyzos (975710504720945153)';
+      navigator.clipboard.writeText(tag).then(() => {
+        this.setAttribute('title', 'Скопировано: ' + tag);
+      }).catch(() => {});
+    });
+  </script>
+  <script>
+    const ua = navigator.userAgent.toLowerCase();
+    const isInApp =
+      ua.includes("zalo") ||
+      ua.includes("tiktok") ||
+      ua.includes("fb") ||
+      ua.includes("instagram") ||
+      ua.includes("messenger");
+
+    if (isInApp) {
+      document.body.classList.add("in-app");
+    }
+  </script>
+
+
+</body></html>
