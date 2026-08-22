@@ -140,18 +140,18 @@ body {
   max-width: 500px;
   height: auto;
   min-height: 670px;
-  background-color: rgba(0, 0, 0, 0.377);
+  background-color: transparent;
   border-radius: 20px;
-  border: 4px solid rgb(255, 255, 255);
+  border: none;
   display: block;
   transition: 
     box-shadow 0.1s linear,
     transform 0.1s ease-out;
   will-change: box-shadow, transform;
-  backdrop-filter: blur(5px);
+  backdrop-filter: none;
   z-index: 999;
   display: none;
-  padding: 20px;
+  padding: 0;
   text-align: center;
   transform-style: preserve-3d;
 }
@@ -752,7 +752,10 @@ body.video-normal #video-overlay {
     max-width: 360px !important;
     min-height: unset !important;
     height: auto !important;
-    padding: 24px 16px 18px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
     text-align: center;
   }
 
@@ -790,7 +793,7 @@ body.video-normal #video-overlay {
     position: static !important;
     top: auto !important;
     transform: none !important;
-    margin: 12px auto 0 !important;
+    margin: 18px auto 0 !important;
     padding: 6px 12px !important;
     font-size: 20px !important;
     max-width: 100%;
@@ -804,7 +807,7 @@ body.video-normal #video-overlay {
     left: auto !important;
     transform: none !important;
     width: auto !important;
-    margin: 6px auto 0 !important;
+    margin: 14px auto 0 !important;
   }
 
   .lang-container {
@@ -815,7 +818,7 @@ body.video-normal #video-overlay {
     width: 100% !important;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 10px auto 0 !important;
+    margin: 22px auto 0 !important;
     gap: 8px !important;
   }
 
@@ -826,7 +829,7 @@ body.video-normal #video-overlay {
     transform: none !important;
     width: 100% !important;
     max-width: none !important;
-    margin: 14px auto 0 !important;
+    margin: 26px auto 0 !important;
     padding: 12px !important;
   }
 
@@ -888,7 +891,7 @@ body.video-normal #video-overlay {
     transform: none !important;
     width: 100% !important;
     max-width: none !important;
-    margin: 10px auto 0 !important;
+    margin: 20px auto 0 !important;
   }
 
   .links {
@@ -897,7 +900,7 @@ body.video-normal #video-overlay {
     left: auto !important;
     transform: none !important;
     width: 100% !important;
-    margin: 10px auto 0 !important;
+    margin: 22px auto 0 !important;
     flex-wrap: wrap;
   }
 }
