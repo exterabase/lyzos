@@ -43,8 +43,10 @@
     <div id="video-overlay"></div>
     <div id="blurred-box" class="tilt-element">
       <!-- ЗАМЕНИ на свою аватарку, положи файл в images/ и поправь src -->
-      <img id="profile-picture" src="images/kaka3.png" alt="Profile Picture">
-      <img id="avatar-frame" src="" alt="Avatar Frame">
+      <div class="avatar-wrap">
+        <img id="profile-picture" src="images/kaka3.png" alt="Profile Picture">
+        <img id="avatar-frame" src="" alt="Avatar Frame">
+      </div>
       <p id="username-container" style="color: white; font-weight: bold; font-size: 32px;">
         <span id="username">Lelouch vi Britannia</span>
         <span id="typing-cursor">|</span>
@@ -76,11 +78,11 @@
         <div class="discord-content">
           <div class="discord-icon">
             <img id="discord-avatar" src="" alt="" draggable="false" loading="lazy" onerror="this.style.display='none'">
+            <span id="discord-status-dot"></span>
           </div>
           <div class="discord-meta">
             <b id="discord-username"></b>
             <div>
-              <span id="discord-status-dot"></span>
               <span id="discord-status-text"></span>
             </div>
           </div>
