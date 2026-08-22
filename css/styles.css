@@ -829,6 +829,35 @@ body.video-normal #video-overlay {
     margin: 12px auto 0 !important;
   }
 
+  .discord-content {
+    align-items: flex-start !important;
+  }
+
+  .discord-icon {
+    flex-shrink: 0;
+  }
+
+  .discord-icon img {
+    width: 44px !important;
+    height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
+    margin-right: 10px !important;
+  }
+
+  .discord-meta {
+    min-width: 0;
+    flex: 1 1 auto;
+    text-align: left;
+  }
+
+  .discord-meta b {
+    font-size: 15px !important;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
   .user-description {
     position: static !important;
     bottom: auto !important;
