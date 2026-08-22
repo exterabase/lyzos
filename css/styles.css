@@ -740,28 +740,27 @@ body.video-normal #video-overlay {
 /* ==========================================================================
    МОБИЛЬНЫЙ РЕОРДЕР: вместо абсолютного позиционирования по %/px (которое
    ломается и наезжает друг на друга на разных размерах экрана телефонов) —
-   превращаем карточку в обычный вертикальный flex-стек. На десктопе всё
-   остаётся как было (position: absolute + tilt-эффект).
+   превращаем внутренности карточки в обычный вертикальный поток (через
+   text-align + margin, БЕЗ смены display у самой карточки — иначе она
+   перестаёт скрываться под интро-терминалом). На десктопе всё как было
+   (position: absolute + tilt-эффект).
    ========================================================================== */
 @media screen and (max-width: 600px) {
   #blurred-box {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    width: 92% !important;
-    max-width: 380px !important;
+    /* display НЕ трогаем — им управляет JS (терминал/карточка) */
+    width: 78% !important;
+    max-width: 300px !important;
     min-height: unset !important;
     height: auto !important;
-    padding: 28px 16px 20px !important;
-    gap: 10px;
+    padding: 22px 14px 16px !important;
+    text-align: center;
   }
 
   .avatar-wrap {
     position: relative;
-    width: 110px;
-    height: 110px;
-    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
   }
 
   #profile-picture {
@@ -791,9 +790,9 @@ body.video-normal #video-overlay {
     position: static !important;
     top: auto !important;
     transform: none !important;
-    margin: 2px 0 0 !important;
+    margin: 8px auto 0 !important;
     padding: 4px 10px !important;
-    font-size: 20px !important;
+    font-size: 18px !important;
     max-width: 100%;
     white-space: normal !important;
     word-break: break-word;
@@ -805,7 +804,7 @@ body.video-normal #video-overlay {
     left: auto !important;
     transform: none !important;
     width: auto !important;
-    margin: 0 !important;
+    margin: 6px auto 0 !important;
   }
 
   .lang-container {
@@ -816,8 +815,8 @@ body.video-normal #video-overlay {
     width: 100% !important;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 4px 0 !important;
-    gap: 10px !important;
+    margin: 10px auto 0 !important;
+    gap: 8px !important;
   }
 
   .discord-widget {
@@ -826,8 +825,8 @@ body.video-normal #video-overlay {
     left: auto !important;
     transform: none !important;
     width: 100% !important;
-    max-width: 320px !important;
-    margin: 4px 0 !important;
+    max-width: none !important;
+    margin: 12px auto 0 !important;
   }
 
   .user-description {
@@ -836,8 +835,8 @@ body.video-normal #video-overlay {
     left: auto !important;
     transform: none !important;
     width: 100% !important;
-    max-width: 320px !important;
-    margin: 4px 0 !important;
+    max-width: none !important;
+    margin: 10px auto 0 !important;
   }
 
   .links {
@@ -846,7 +845,7 @@ body.video-normal #video-overlay {
     left: auto !important;
     transform: none !important;
     width: 100% !important;
-    margin: 4px 0 0 !important;
+    margin: 10px auto 0 !important;
     flex-wrap: wrap;
   }
 }
