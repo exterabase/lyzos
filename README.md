@@ -1,121 +1,18 @@
-# lyzos.tech — bio-сайт
+# Jack -- 3D Creator Portfolio
 
-Клон механики оригинального биолинка (терминал-интро, видео-фон, tilt-эффект,
-плеер, discord-виджет через Lanyard), перепакованный под тебя:
-- Telegram-канал: https://t.me/rei_plugins
-- Telegram-чат: https://t.me/rei_chat777
-- TikTok: https://tiktok.com/@lyzos.tech
-- Discord (без инвайта, только статус + копирование ника): ID `975710504720945153`
+Dark-themed 3D creator portfolio landing page built with React, TypeScript, Tailwind CSS, and Framer Motion.
 
-## Что нужно доделать руками
+## Setup
 
-1. **Аватарка и видео-фон** — сейчас лежат заглушки из исходного шаблона:
-   - `images/kaka3.png` → замени на свою аватарку (или положи файл с другим
-     именем и поправь `src` у `#profile-picture` в `index.html`)
-   - `media/oshi no ko.mp4` → замени на своё видео (или свой путь в `#myVideo`)
-2. **Function ID счётчика просмотров** — в `js/views.js` есть константа
-   `APPWRITE_FUNCTION_ID = "REPLACE_WITH_FUNCTION_ID"` — впиши туда реальный ID
-   функции после деплоя (шаги ниже).
+npm install
+npm run dev
 
-## Счётчик просмотров через Appwrite (без localStorage/куки)
+## Build
 
-Каждый заход на сайт вызывает Appwrite Function, которая инкрементит документ
-в Appwrite Database и возвращает актуальное число — считает бэкенд, а не
-браузер, так что накрутка через devtools/очистку кэша не работает.
+npm run build
 
-Код функции лежит в папке `appwrite-function/increment-views/`.
+## Structure
 
-### Шаги в консоли Appwrite (у тебя уже открыт проект `fra-6a88a994001db87195f7`)
-
-1. **Databases → Create database**
-   - Назови как хочешь, например `site`. Запомни **Database ID**.
-2. **В этой базе → Create collection**
-   - Назови `stats`. Запомни **Collection ID**.
-   - Разрешения (Permissions) коллекции: **никакого публичного доступа не
-     нужно** — функция ходит в базу под своим API-ключом, а не от лица юзера.
-3. Аттрибуты в коллекции `stats` создавать не обязательно вручную — функция
-   сама создаст документ с полем `count` (integer) при первом запуске.
-   Если хочешь — можешь сразу создать документ с ID `views` и полем
-   `count = 0` (integer) вручную, тогда пропустишь автосоздание.
-4. **Functions → Create function**
-   - Runtime: **Node.js 18.0** (или новее)
-   - Entrypoint: `src/main.js`
-   - Загрузи содержимое папки `appwrite-function/increment-views/`
-     (через CLI `appwrite deploy function` или архивом через консоль)
-5. В настройках функции → **Variables** добавь:
-   - `APPWRITE_DATABASE_ID` = ID из шага 1
-   - `APPWRITE_COLLECTION_ID` = ID из шага 2
-   - `APPWRITE_DOCUMENT_ID` = `views` (или своё имя документа)
-6. В настройках функции → **Permissions / Execute Access** — добавь роль
-   **Any** (чтобы функцию можно было дёргать с фронтенда без логина).
-7. Скопируй **Function ID** и вставь его в `js/views.js`:
-   ```js
-   const APPWRITE_FUNCTION_ID = "твой_function_id";
-   ```
-8. Задеплой функцию (Deploy / Activate).
-
-Про `APPWRITE_FUNCTION_API_KEY` и project ID можно не беспокоиться —
-Appwrite сам прокидывает их в рантайм функции как переменные окружения,
-их не нужно хранить в браузере.
-
-### Быстрый деплой через Appwrite CLI (альтернатива консоли)
-
-```bash
-npm install -g appwrite-cli
-appwrite login
-cd appwrite-function/increment-views
-appwrite init function   # свяжет папку с функцией в твоём проекте
-appwrite deploy function
-```
-
-## Хостинг самого сайта на lyzos.tech
-
-Сайт статический (HTML/CSS/JS) — можно захостить где угодно:
-- **GitHub Pages** — бесплатно, привязка кастомного домена через CNAME
-- **Cloudflare Pages** — бесплатно, проще с SSL и кастомным доменом
-- **Appwrite Sites** (если хочешь всё в одном проекте Appwrite)
-
-В DNS домена `lyzos.tech` нужно будет добавить A/CNAME записи на выбранный
-хостинг — если решишь, какой хостинг берёшь, могу расписать конкретные шаги.
-
-## Discord-виджет: почему может быть "битая аватарка"
-
-Виджет статуса (кружок с аватаркой, "в сети/играет") работает через **Lanyard
-API**, а Lanyard видит presence только тех, кто состоит на их собственном
-дискорд-сервере — https://discord.gg/lanyard. Зайди туда своим аккаунтом
-(ID `975710504720945153`), и в течение минуты статус подтянется.
-
-Если не зайдёшь — теперь это не ломает вёрстку: скрипт сам прячет битую
-картинку и показывает фолбэк "lyzos / Не отслеживается" вместо alt-текста
-поверх карточки.
-
-## Терминал
-
-Строка `System:` теперь всегда хардкожена как `Arch Linux`, вместо реального
-определения ОС посетителя (правь `js/script.js`, если захочешь вернуть
-автоопределение или сменить на другой дистрибутив/строку).
-
-## Фикс консольных ошибок из скрина
-
-1. **CORS / 404 на `functions/REPLACE_WITH_FUNCTION_ID/executions`** — это
-   ожидаемо, пока не вставишь реальный Function ID (см. раздел про Appwrite
-   выше) и не выставишь Execute Access = Any. Пока плейсхолдер на месте,
-   счётчик просто тихо фейлится и показывает "Views: N/A".
-2. **`neko.png` / `assets/cursor` 404** — в исходном шаблоне спрайта кота
-   вообще не было, я отключил подключение `js/neko.js`/`js/neko-init.js` в
-   `index.html`. Если найдёшь/нарисуешь свой спрайт кота (32×32 кадра по
-   направлениям, формат см. в `js/neko.js`) — раскомментируй эти два тега.
-3. **`anh la ai.mp3` / `NotSupportedError`** — трека тоже не было в архиве.
-   Плеер теперь ищет `media/background.mp3`; если файла нет — сам скрывает
-   контролы плеера вместо спама ошибками. Просто положи свой mp3 как
-   `media/background.mp3` (или поменяй имя в `js/music.js`, массив `songs`).
-4. **`discord-lookup-api-alpha.vercel.app` 404** — это публичное API для
-   рамки аватарки (avatar decoration), не критично, часто 404-ит/лимитит.
-   Теперь просто тихо прячет рамку без красных ошибок в консоли.
-5. **`api.lanyard.rest` 404 + "Discord Avatar" текст поверх карточки** —
-   если ты тестируешь и видишь это на уже обновлённой версии сайта, скорее
-   всего браузер отдал закэшированный старый `lanyard.js`. Сделай жёсткий
-   рефреш (Ctrl+Shift+R) или открой в приватном окне. Сам факт 404 от
-   Lanyard означает, что аккаунт `975710504720945153` ещё не вступил на
-   https://discord.gg/lanyard — без этого статус не появится, но теперь
-   виджет в этом случае красиво показывает фолбэк, а не битую картинку.
+- `src/sections/` -- HeroSection, MarqueeSection, AboutSection, ServicesSection, ProjectsSection
+- `src/components/` -- FadeIn, Magnet, AnimatedText, ContactButton, LiveProjectButton
+- `src/data/` -- marquee image list, project data, service data
